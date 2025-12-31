@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,14 +47,14 @@ body{
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:3.1rem;
+  font-size:3rem;
   font-weight:700;
   margin-bottom:18px;
 }
 
 .welcome{
-  font-size:1.12rem;
-  line-height:1.8;
+  font-size:1.1rem;
+  line-height:1.85;
   color:var(--muted);
   margin-bottom:40px;
 }
@@ -84,7 +85,7 @@ input{
   padding:13px 16px;
   font-size:1rem;
   color:var(--text);
-  width:190px;
+  width:200px;
   outline:none;
 }
 
@@ -92,7 +93,7 @@ button{
   background:linear-gradient(135deg,#9bb8ff,#7a9cff);
   border:none;
   border-radius:14px;
-  padding:13px 18px;
+  padding:13px 20px;
   font-weight:600;
   cursor:pointer;
   color:#0b1024;
@@ -112,7 +113,7 @@ button{
 
 .msg-title{
   font-family:'Playfair Display',serif;
-  font-size:2.3rem;
+  font-size:2.2rem;
   margin-bottom:16px;
 }
 
@@ -137,14 +138,14 @@ button{
   <h1>One More Year,<br>Same Sky</h1>
 
   <p class="welcome">
-    Another year passed — not perfectly, not quietly.  
-    Some moments stayed. Some changed us.
+    Another year passed — imperfect, honest, real.  
+    Some moments stayed with us. Some quietly changed us.
     <br><br>
-    We all walked different paths,  
-    but under the same sky.
+    Paths were different, speeds were different,  
+    but the sky above us stayed the same.
     <br><br>
-    There’s a small message here —  
-    written slowly, meant honestly.
+    This is just a small note —  
+    meant to be read slowly.
   </p>
 
   <div class="card">
@@ -164,39 +165,42 @@ button{
 
 </div>
 
-<!-- 🎵 Background music (guaranteed load if file exists) -->
 <audio id="bgMusic" preload="auto" loop>
-  <!-- IMPORTANT: put music.mp3 in the same GitHub repo -->
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const MESSAGES = {
+
   bruh: {
-    title: "For my people",
+    title: "You know this already",
     body:
-`We didn’t talk every day.
-We didn’t need to.
+`No explanations needed.
+No summaries either.
 
 You were there —
-in jokes, in silence,
-in those “chal theek hai” moments.
+in the mess, the laughs,
+and the quiet parts.
 
-Let’s not promise anything big.
-Just don’t disappear.
+Let’s step into the next year
+the same way we survived the last —
+together.
 
 Very Happy New Year.`
   },
 
   buddy: {
-    title: "A simple thing",
+    title: "A simple wish",
     body:
-`Not every connection needs a label.
-Some just feel easy.
+`We may not know each other well,
+and that’s completely fine.
 
-If this year felt lighter
-because you were around,
-that already matters.
+Every year begins with
+a little distance
+and a little possibility.
+
+Wishing you calm days
+and good moments ahead.
 
 Very Happy New Year.`
   },
@@ -204,49 +208,64 @@ Very Happy New Year.`
   sir: {
     title: "With respect",
     body:
-`Some words stay longer than expected.
-They show up when choices feel heavy.
+`Some guidance leaves a mark
+without making noise.
 
-Thank you for being part of this year,
-even quietly.
+Thank you for your patience,
+your words,
+and the example you set.
+
+Wishing you clarity and strength
+in the year ahead.
 
 Very Happy New Year.`
   },
 
   volleys: {
-    title: "On the court",
+    title: "To our seniors",
     body:
-`No speeches.
-No dramatic wins.
+`We noticed more than we said.
 
-Just tired legs,
-focused minds,
-and showing up again.
+The discipline,
+the responsibility,
+the way you carried the game —
+it mattered.
 
-Let’s carry this forward.
+Thank you for setting the tone
+we now step into.
+
 Very Happy New Year.`
   },
 
   volleyf: {
-    title: "At the start",
+    title: "Same court, same start",
     body:
-`You don’t need confidence yet.
-Just keep showing up.
+`We’re all new here —
+learning the rhythm,
+finding our place.
 
-Mistakes will happen.
-Growth will follow.
+Different styles,
+same effort,
+same beginning.
+
+Let’s see how far this goes.
 
 Very Happy New Year.`
   },
 
+  /* 🔑 UPDATED: batchmates = stranger-type */
   batchmates: {
-    title: "Yet to be known",
+    title: "A new beginning",
     body:
-`Right now, we’re just names in a list.
-Soon — shared classes, shared stress.
+`We may not know each other yet,
+and that’s how every journey starts.
 
-We’ll know each other in time.
-Same place. Same sky.
+Same place,
+different stories,
+unknown paths ahead.
+
+Wishing you a steady
+and meaningful year.
 
 Very Happy New Year.`
   }
@@ -269,10 +288,12 @@ function showMessage(){
   const music = document.getElementById("bgMusic");
 
   const msg = MESSAGES[key] || {
-    title: "A small wish",
+    title: "A quiet thought",
     body:
-`May the coming year
-feel lighter than the last.
+`May the year ahead
+feel lighter,
+clearer,
+and a little kinder.
 
 Very Happy New Year.`
   };
@@ -281,7 +302,6 @@ Very Happy New Year.`
   document.getElementById("msgBody").textContent = msg.body;
   box.style.display = "block";
 
-  // start music gently
   fadeInMusic(music);
 }
 </script>
