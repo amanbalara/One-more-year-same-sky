@@ -1,298 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>One More Year, Same Sky</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#05080f;
-  --card:rgba(10,12,24,0.7);
-  --text:#eaeaf0;
-  --muted:rgba(255,255,255,0.6);
-  --accent:#7aa2ff;
+  --card:rgba(14,16,34,0.72);
+  --text:#f0f1f7;
+  --muted:rgba(255,255,255,0.65);
+  --accent:#9bb8ff;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
 
-.stage{
+body{
   min-height:100vh;
+  background:
+    radial-gradient(circle at 30% 20%, #1c255a, transparent 45%),
+    radial-gradient(circle at 70% 80%, #2a1b4f, transparent 40%),
+    #05080f;
+  color:var(--text);
+  font-family:'Poppins',sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
-  overflow:hidden;
   padding:24px;
 }
 
-canvas#stars{
-  position:absolute;
-  inset:0;
-  z-index:0;
-}
-
-.center{
-  z-index:2;
-  max-width:900px;
+.container{
+  max-width:860px;
   width:100%;
   text-align:center;
+  animation:fadeIn 1.4s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
 }
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:3rem;
-  font-weight:600;
-  margin-bottom:12px;
+  font-size:3.1rem;
+  font-weight:700;
+  margin-bottom:18px;
 }
 
-.lead{
+.welcome{
+  font-size:1.12rem;
+  line-height:1.8;
   color:var(--muted);
+  margin-bottom:40px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:30px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 30px 120px rgba(0,0,0,0.6);
+}
+
+.prompt{
   font-size:1.05rem;
-  margin-bottom:28px;
-}
-
-.hint{
-  font-size:0.9rem;
-  opacity:0.5;
-  margin-top:12px;
-}
-
-.panel{
-  margin-top:32px;
-  display:flex;
-  justify-content:center;
-  opacity:0;
-  transform:translateY(12px);
-  transition:0.6s ease;
-}
-
-.panel.show{
-  opacity:1;
-  transform:none;
+  margin-bottom:16px;
 }
 
 .input-wrap{
-  background:var(--card);
-  border-radius:14px;
-  padding:14px;
   display:flex;
-  gap:10px;
-  backdrop-filter:blur(8px);
+  justify-content:center;
+  gap:12px;
 }
 
 input{
   background:transparent;
-  border:none;
-  outline:none;
-  color:var(--text);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:14px;
+  padding:13px 16px;
   font-size:1rem;
-  width:180px;
+  color:var(--text);
+  width:190px;
+  outline:none;
 }
 
 button{
-  background:var(--accent);
-  color:#0a0d1a;
+  background:linear-gradient(135deg,#9bb8ff,#7a9cff);
   border:none;
-  padding:10px 14px;
-  border-radius:10px;
+  border-radius:14px;
+  padding:13px 18px;
   font-weight:600;
   cursor:pointer;
+  color:#0b1024;
 }
 
-.message-card{
-  margin-top:30px;
-  background:var(--card);
-  padding:28px;
-  border-radius:18px;
-  opacity:0;
-  transform:translateY(10px);
-  transition:0.7s ease;
+.message{
+  margin-top:34px;
+  display:none;
   text-align:left;
+  animation:fadeUp 0.9s ease;
 }
 
-.message-card.show{
-  opacity:1;
-  transform:none;
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:none}
 }
 
 .msg-title{
   font-family:'Playfair Display',serif;
-  font-size:2.2rem;
-  margin-bottom:14px;
+  font-size:2.3rem;
+  margin-bottom:16px;
 }
 
 .msg-body{
-  line-height:1.7;
-  font-size:1.05rem;
+  font-size:1.08rem;
+  line-height:1.85;
   white-space:pre-line;
 }
 
 .signature{
-  margin-top:18px;
+  margin-top:22px;
   text-align:right;
-  opacity:0.7;
-}
-
-@media(max-width:600px){
-  h1{font-size:2.3rem}
+  opacity:0.75;
+  font-style:italic;
 }
 </style>
 </head>
 
 <body>
-<div class="stage">
-  <canvas id="stars"></canvas>
+<div class="container">
 
-  <div class="center">
-    <h1>One More Year,<br>Same Sky</h1>
-    <p class="lead">
-      Different lives. Different paths.  
-      Yet somehow — under the same sky.
-    </p>
+  <h1>One More Year,<br>Same Sky</h1>
 
-    <p class="hint">Tap the stars. Connect a few.</p>
+  <p class="welcome">
+    Another year passed — not perfectly, not quietly.  
+    Some days stayed with us. Some slipped away.
+    <br><br>
+    We all walked different paths,  
+    but under the same sky.
+    <br><br>
+    There’s a small message here.  
+    Written slowly. Meant honestly.
+  </p>
 
-    <div class="panel" id="panel">
-      <div class="input-wrap">
-        <input id="codeInput" placeholder="enter your code">
-        <button id="unlockBtn">unlock</button>
-      </div>
+  <div class="card">
+    <p class="prompt">Enter your code</p>
+
+    <div class="input-wrap">
+      <input id="codeInput" placeholder="your code">
+      <button onclick="showMessage()">Read</button>
     </div>
 
-    <div class="message-card" id="card">
-      <div class="msg-title" id="title"></div>
-      <div class="msg-body" id="body"></div>
+    <div class="message" id="messageBox">
+      <div class="msg-title" id="msgTitle"></div>
+      <div class="msg-body" id="msgBody"></div>
       <div class="signature">— Aman</div>
     </div>
   </div>
+
 </div>
 
+<!-- 🎵 Background music -->
+<audio id="bgMusic" loop>
+  <!-- Replace with your own file -->
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-/* ---------- STAR FIELD ---------- */
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-let stars = [];
-let connected = 0;
-
-function resize(){
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-  stars = [];
-  for(let i=0;i<180;i++){
-    stars.push({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height,
-      r:Math.random()*1.6+0.3,
-      hit:false
-    });
-  }
-}
-resize(); addEventListener("resize",resize);
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="white";
-  stars.forEach(s=>{
-    ctx.globalAlpha = s.hit?0.9:0.5;
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fill();
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-
-canvas.addEventListener("click",(e)=>{
-  const x=e.clientX,y=e.clientY;
-  stars.forEach(s=>{
-    if(!s.hit && Math.hypot(s.x-x,s.y-y)<12){
-      s.hit=true;
-      connected++;
-    }
-  });
-  if(connected>=6){
-    document.getElementById("panel").classList.add("show");
-  }
-});
-
-/* ---------- MESSAGES ---------- */
 const MESSAGES = {
-  bruh:{
-    title:"For the ones who stayed",
-    body:`Some friendships don’t need daily words,
-they just survive time.
+  bruh: {
+    title: "For my people",
+    body:
+`We didn’t talk every day.
+We didn’t need to.
 
-Thanks for being part of my year —
-same chaos, next sky.`
+Somehow,
+you were there in the background of my year —
+in jokes, silence, and “chal theek hai”.
+
+Let’s not promise anything big.
+Just…
+don’t disappear.`
   },
-  buddy:{
-    title:"A quiet wish",
-    body:`Not every bond is loud,
-some are just… comfortable.
 
-Hope the coming year
+  buddy: {
+    title: "A simple thing",
+    body:
+`Not every connection has a label.
+Some just feel easy.
+
+If this year felt lighter
+because you were around,
+that already matters.
+
+Hope the next one
 treats you gently.`
   },
-  sir:{
-    title:"With respect",
-    body:`Some lessons stay longer than notes.
-Some guidance works silently.
 
-Thank you for shaping a year
-I’ll always remember.`
+  sir: {
+    title: "With respect",
+    body:
+`You probably don’t realise this,
+but some words stay.
+
+They show up later —
+when choices feel heavy
+and confidence feels thin.
+
+Thank you
+for being part of this year.`
   },
-  volleys:{
-    title:"To the court & beyond",
-    body:`Sweat, silence, and shared focus —
-this year knew our effort.
 
-May the next one
-reward the discipline.`
+  volleys: {
+    title: "On the court",
+    body:
+`No speeches.
+No dramatic wins.
+
+Just tired legs,
+focused minds,
+and showing up again.
+
+That’s how this year was built.
+Let’s keep that energy.`
   },
-  volleyf:{
-    title:"New beginnings",
-    body:`Every start feels unsure.
-Every effort still counts.
 
-Welcome to the journey —
-the sky’s big enough.`
+  volleyf: {
+    title: "At the start",
+    body:
+`You don’t have to be confident yet.
+You just have to keep showing up.
+
+Mistakes will happen.
+Growth will follow.
+
+Give it time.`
   },
-  batchmates:{
-    title:"To those starting out",
-    body:`New place. New faces.
-Same nervous excitement.
 
-May this year
-feel a little like home.`
+  batchmates: {
+    title: "Yet to be known",
+    body:
+`Right now,
+we’re just names in a list.
+
+Soon —
+shared classes,
+shared stress,
+shared late nights.
+
+We’ll get there.
+Same place. Same sky.`
   }
 };
 
-function normalize(s){
-  return s?.toLowerCase().trim();
+function showMessage(){
+  const key = document.getElementById("codeInput").value.trim().toLowerCase();
+  const box = document.getElementById("messageBox");
+  const music = document.getElementById("bgMusic");
+
+  const msg = MESSAGES[key] || {
+    title: "A small wish",
+    body:
+`May the coming year
+feel a little lighter
+than the last.
+
+That’s enough.`
+  };
+
+  document.getElementById("msgTitle").textContent = msg.title;
+  document.getElementById("msgBody").textContent = msg.body;
+  box.style.display = "block";
+
+  // start music (allowed after user interaction)
+  music.volume = 0.4;
+  music.play().catch(()=>{});
 }
-
-document.getElementById("unlockBtn").onclick = ()=>{
-  const key = normalize(document.getElementById("codeInput").value);
-  const card = document.getElementById("card");
-
-  if(MESSAGES[key]){
-    document.getElementById("title").textContent = MESSAGES[key].title;
-    document.getElementById("body").textContent = MESSAGES[key].body;
-  }else{
-    document.getElementById("title").textContent = "To you, stranger";
-    document.getElementById("body").textContent =
-`If you’re here by accident —
-maybe it wasn’t one.
-
-I hope the coming year
-is kinder to you.`;
-  }
-  card.classList.add("show");
-};
 </script>
+
 </body>
 </html>
