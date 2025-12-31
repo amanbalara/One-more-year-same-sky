@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One More Year, Same Sky</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #05080f;
+      color: #eaeaea;
+      overflow-x: hidden;
+    }
+
+    /* ---------- SKY BACKGROUND ---------- */
+    .sky {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, #1b2b52, transparent 40%),
+        radial-gradient(circle at 80% 30%, #3a1c71, transparent 45%),
+        linear-gradient(#05080f, #02030a);
+      animation: drift 25s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes drift {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .section {
+      min-height: 100vh;
+      padding: 80px 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .scroll {
+      opacity: 0.6;
+      margin-top: 30px;
+      font-size: 0.95rem;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      font-size: 1.6rem;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    .soft {
+      opacity: 0.7;
+    }
+
+    .message {
+      font-size: 1.35rem;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    .end {
+      text-align: center;
+    }
+
+    .signature {
+      display: block;
+      margin-top: 40px;
+      font-size: 0.95rem;
+      opacity: 0.6;
+    }
+
+    /* ---------- FADE IN ---------- */
+    .fade {
+      animation: fadeIn 1.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sky"></div>
+
+  <!-- HERO -->
+  <section class="section hero fade">
+    <h1>Different paths.<br>Same sky.</h1>
+    <p class="scroll">scroll ↓</p>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="section fade">
+    <p>Some of us met.</p>
+    <p>Some drifted.</p>
+    <p>Some fought battles quietly.</p>
+    <p>Some smiled more than they showed.</p>
+  </section>
+
+  <!-- SURVIVAL -->
+  <section class="section fade">
+    <p class="highlight">
+      If you’re reading this,<br>
+      you survived another year.
+    </p>
+    <p class="soft">And that counts.</p>
+  </section>
+
+  <!-- PERSONAL MESSAGE -->
+  <section class="section message fade" id="personal-message">
+    <!-- injected by JS -->
+  </section>
+
+  <!-- END -->
+  <section class="section end fade">
+    <p>May the coming year be kinder.</p>
+    <p>To you.</p>
+    <p>To us.</p>
+
+    <span class="signature">— Aman</span>
+  </section>
+
+  <script>
+    /* ---------- AUDIENCE MESSAGES (case-insensitive) ---------- */
+    const messages = {
+      volleys: `To the ones who shared sweat,
+silence, and endless rallies on the court —
+this year remembers your effort.`,
+
+      volleyf: `New to the court, new to the fight.
+May the coming year shape you
+stronger than yesterday.`,
+
+      sir: `To those who guided,
+sometimes without knowing they were guiding —
+thank you for the quiet impact.`,
+
+      bruh: `To the people who made ordinary days lighter,
+laughs louder, and nights longer —
+same chaos, next year too.`,
+
+      buddy: `To small talks, shared moments,
+and passing smiles —
+may they grow into something warmer.`,
+
+      batchmates: `To those starting a new chapter —
+new campus, new fears, new hopes.
+You are not alone under this sky.`
+    };
+
+    /* ---------- URL LOGIC ---------- */
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("key")?.toLowerCase();
+
+    const container = document.getElementById("personal-message");
+
+    if (key && messages[key]) {
+      container.textContent = messages[key];
+    } else {
+      container.textContent = `To my friends, seniors, teammates,
+hostel people —
+and even you, stranger.
+
+I’m glad you existed in my 2025.`;
+    }
+  </script>
+
+</body>
+</html>
