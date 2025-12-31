@@ -138,13 +138,13 @@ button{
 
   <p class="welcome">
     Another year passed — not perfectly, not quietly.  
-    Some days stayed with us. Some slipped away.
+    Some moments stayed. Some changed us.
     <br><br>
     We all walked different paths,  
     but under the same sky.
     <br><br>
-    There’s a small message here.  
-    Written slowly. Meant honestly.
+    There’s a small message here —  
+    written slowly, meant honestly.
   </p>
 
   <div class="card">
@@ -164,9 +164,9 @@ button{
 
 </div>
 
-<!-- 🎵 Background music -->
-<audio id="bgMusic" loop>
-  <!-- Replace with your own file -->
+<!-- 🎵 Background music (guaranteed load if file exists) -->
+<audio id="bgMusic" preload="auto" loop>
+  <!-- IMPORTANT: put music.mp3 in the same GitHub repo -->
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -178,41 +178,39 @@ const MESSAGES = {
 `We didn’t talk every day.
 We didn’t need to.
 
-Somehow,
-you were there in the background of my year —
-in jokes, silence, and “chal theek hai”.
+You were there —
+in jokes, in silence,
+in those “chal theek hai” moments.
 
 Let’s not promise anything big.
-Just…
-don’t disappear.`
+Just don’t disappear.
+
+Very Happy New Year.`
   },
 
   buddy: {
     title: "A simple thing",
     body:
-`Not every connection has a label.
+`Not every connection needs a label.
 Some just feel easy.
 
 If this year felt lighter
 because you were around,
 that already matters.
 
-Hope the next one
-treats you gently.`
+Very Happy New Year.`
   },
 
   sir: {
     title: "With respect",
     body:
-`You probably don’t realise this,
-but some words stay.
+`Some words stay longer than expected.
+They show up when choices feel heavy.
 
-They show up later —
-when choices feel heavy
-and confidence feels thin.
+Thank you for being part of this year,
+even quietly.
 
-Thank you
-for being part of this year.`
+Very Happy New Year.`
   },
 
   volleys: {
@@ -225,37 +223,45 @@ Just tired legs,
 focused minds,
 and showing up again.
 
-That’s how this year was built.
-Let’s keep that energy.`
+Let’s carry this forward.
+Very Happy New Year.`
   },
 
   volleyf: {
     title: "At the start",
     body:
-`You don’t have to be confident yet.
-You just have to keep showing up.
+`You don’t need confidence yet.
+Just keep showing up.
 
 Mistakes will happen.
 Growth will follow.
 
-Give it time.`
+Very Happy New Year.`
   },
 
   batchmates: {
     title: "Yet to be known",
     body:
-`Right now,
-we’re just names in a list.
+`Right now, we’re just names in a list.
+Soon — shared classes, shared stress.
 
-Soon —
-shared classes,
-shared stress,
-shared late nights.
+We’ll know each other in time.
+Same place. Same sky.
 
-We’ll get there.
-Same place. Same sky.`
+Very Happy New Year.`
   }
 };
+
+function fadeInMusic(audio){
+  let vol = 0;
+  audio.volume = 0;
+  audio.play().catch(()=>{});
+  const fade = setInterval(()=>{
+    vol += 0.02;
+    audio.volume = Math.min(vol, 0.45);
+    if(vol >= 0.45) clearInterval(fade);
+  }, 120);
+}
 
 function showMessage(){
   const key = document.getElementById("codeInput").value.trim().toLowerCase();
@@ -266,19 +272,17 @@ function showMessage(){
     title: "A small wish",
     body:
 `May the coming year
-feel a little lighter
-than the last.
+feel lighter than the last.
 
-That’s enough.`
+Very Happy New Year.`
   };
 
   document.getElementById("msgTitle").textContent = msg.title;
   document.getElementById("msgBody").textContent = msg.body;
   box.style.display = "block";
 
-  // start music (allowed after user interaction)
-  music.volume = 0.4;
-  music.play().catch(()=>{});
+  // start music gently
+  fadeInMusic(music);
 }
 </script>
 
